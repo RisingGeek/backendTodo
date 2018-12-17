@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script src="./node_modules/angular/angular.min.js"></script>
+    <script src="./node_modules/angular-route/angular-route.min.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./public/scripts/app.js"></script>
+    <script src="./public/scripts/utils/constants.js"></script>
+    <script src="./public/scripts/routing.js"></script>
+    <script src="./public/scripts/factories/main-factory.js"></script>
+    <script src="./public/scripts/controllers/main-controller.js"></script>
+    <script src="./public/scripts/controllers/user-controller.js"></script>
+    <script src="./public/scripts/directives/redundantEmail.js"></script>
+    <script src="./public/scripts/directives/passwordLength.js"></script>
+</head>
+<body ng-app="myapp" ng-controller="main-controller">
+    <div ng-include="'./public/views/navigation-bar.html'"></div>
+    <ng-view></ng-view>
+</body>
+</html>
