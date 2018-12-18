@@ -1,42 +1,46 @@
-app.controller("user-controller",($scope,$http)=> {
+app.controller("user-controller",($scope,$http,userFactory)=> {
     $scope.user={};
     $scope.allUsers=[];
     $scope.redundantEmail=false;
+    $scope.correctCredentials=true;
+    $scope.inputType='password';
+    $scope.showPassword=false;
+    $scope.message='';
+    $scope.backendNotValid=false;
     $scope.onLoadFunction=()=> {
-        $http.get('http://localhost:3000/getAllUsers').then((res)=> {
+        userFactory.onLoadFunction((res)=> {
             $scope.allUsers=res.data;
-            console.log(res.data);
         })
     }
+    $scope.showHidePassword=()=> {
+        $scope.showPassword=!$scope.showPassword;
+        if($scope.showPassword) {
+            $scope.inputType='text';
+        }
+        else {
+            $scope.inputType='password';
+        }
+    }
     $scope.register=()=> {
-        /*fetch('http://localhost:3000/registerUser', {
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body:JSON.stringify($scope.user)
-        }).then(res=>{     
-            $scope.$emit("loadRoutes",$scope.user.name);
-        });*/
-        $http({
-            url:'http://localhost:3000/registerUser',
-            method:"POST",
-            data:{user:JSON.stringify($scope.user)},
-            headers: {"Content-Type": "application/json"}
-        }).then(res=> {
-            $scope.$emit("loadRoutes",$scope.user.name);
+        userFactory.register($scope.user,(res)=> {
+            if(res.data==='true') {
+                $scope.$emit("loadRoutes",$scope.user.name);
+            }
+            else {
+                $scope.message='Old trick. Backend validation applied.';
+                $scope.backendNotValid=true;
+            }
         })
     }
     $scope.login=()=> {
-        fetch('http://localhost:3000/loginUser', {
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body:JSON.stringify($scope.user)
-        }).then(res=> {
-            console.log(res);
-            $scope.$emit("loadRoutes",$scope.user.name);
+        userFactory.login($scope.user,(res)=> {
+            if(res.data.result) {
+                $scope.$emit("loadRoutes",res.data.userName);
+                $scope.correctCredentials=true;
+            }
+            else {
+                $scope.correctCredentials=false;
+            }
         })
     }
 })

@@ -1,4 +1,4 @@
-app.controller("main-controller",($scope,userFactory,$location,$timeout) => {
+app.controller("main-controller",($scope,$location,$timeout) => {
     $scope.message='';
     $scope.isLoggedIn=false;
     $scope.username='';

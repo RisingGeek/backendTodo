@@ -3,12 +3,20 @@
     <form>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="text" ng-model="user.email" id="email" class="form-control" placeholder="Enter Email">
+            <input type="email" ng-model="user.email" id="email" class="form-control" placeholder="Enter Email">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" ng-model="user.password" id="password" class="form-control" placeholder="Enter Password">
+            <input type={{inputType}} ng-model="user.password" id="password" class="form-control" placeholder="Enter Password">
         </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="inputtype" ng-model="showPassword" ng-click="showHidePassword()">
+            <label for="inputtype" class="form-check-label">Show Password</label>
+        </div>
+        <div class="alert alert-danger" ng-show="!correctCredentials">
+            Wrong Credentials.
+        </div>
+        <br>
         <button type="button" ng-click="login()" class="btn btn-primary">Login</button>
     </form>
 </div>
