@@ -24,7 +24,7 @@ app.controller("user-controller",($scope,$http,userFactory)=> {
     $scope.register=()=> {
         userFactory.register($scope.user,(res)=> {
             if(res.data==='true') {
-                $scope.$emit("loadRoutes",$scope.user.name);
+                $scope.$emit("loadRoutes",$scope.user);
             }
             else {
                 $scope.message='Old trick. Backend validation applied.';
@@ -35,7 +35,7 @@ app.controller("user-controller",($scope,$http,userFactory)=> {
     $scope.login=()=> {
         userFactory.login($scope.user,(res)=> {
             if(res.data.result) {
-                $scope.$emit("loadRoutes",res.data.userName);
+                $scope.$emit("loadRoutes",{name:res.data.userName,email:$scope.user.email});
                 $scope.correctCredentials=true;
             }
             else {

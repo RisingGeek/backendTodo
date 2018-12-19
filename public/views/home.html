@@ -1,4 +1,15 @@
 <div class="container">
+    <div ng-init="onLoadFunction()"></div>
     <h3 class="text-center" ng-bind="message"></h3>
     <h1 class="text-center" ng-show="isLoggedIn">Your Todos</h1>
+    <table class="table table-striped" style="word-wrap: break-word;">
+        <tbody>
+            <tr ng-repeat="todo in todos" ng-show="isLoggedIn">
+                <td>{{todo.task}}</td>
+                <td>{{todo.date}}</td>
+                <td><button class="btn btn-primary">edit</button></td>
+                <td><button class="btn btn-danger" ng-click="delete($index)">delete</button></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
