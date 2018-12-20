@@ -26,6 +26,6 @@ app.factory("mainFactory",($http)=> {
                 },
                 data:{todoIndex:index,email:JSON.parse(localStorage.user).email}
             }).then(res=>callback());
-        }
+        },
     };
 })

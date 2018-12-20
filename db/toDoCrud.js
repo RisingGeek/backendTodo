@@ -19,6 +19,17 @@ const toDoOperation={
                 console.log('todo removed');
             })
         })
+    },
+    updateTask(todo,callback) {
+        ToDo.findOne({_id:todo.todoId},(err,doc)=> {
+            if(err) throw err;
+            doc.task=todo.task;
+            ToDo(doc).save((err)=> {
+                if(err) throw err;
+                console.log('todo updated');
+                callback();
+            })
+        })
     }
 };
 module.exports=toDoOperation;

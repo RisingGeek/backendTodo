@@ -36,4 +36,9 @@ app.post('/addTodo',(req,res)=> {
     toDoCrud.addTask(req.body);
     res.send();
 })
+app.post('/updateTodo',(req,res)=> {
+    toDoCrud.updateTask(req.body.todo,function() {
+        res.send();
+    });
+})
 app.listen(port,()=>console.log('server started on port ',port));

@@ -7,7 +7,7 @@
             <tr ng-repeat="todo in todos" ng-show="isLoggedIn">
                 <td>{{todo.task}}</td>
                 <td>{{todo.date}}</td>
-                <td><button class="btn btn-primary">edit</button></td>
+                <td><button class="btn btn-primary" ng-click="edit(todo)">edit</button></td>
                 <td><button class="btn btn-danger" ng-click="delete($index)">delete</button></td>
             </tr>
         </tbody>

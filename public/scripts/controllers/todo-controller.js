@@ -1,15 +1,16 @@
-app.controller("todoController",($scope,$http,$location)=> {
+app.controller("todoController",($scope,todoFactory)=> {
     $scope.task='';
+    $scope.$on('fillTask',(e,data)=> {
+        $scope.task=data.data.task;
+        localStorage.setItem("todo",JSON.stringify({task:$scope.task,todoId:data.data.id}));
+    })
+    if(localStorage.length>1) {
+        $scope.task=JSON.parse(localStorage.todo).task;
+    }
     $scope.addTodo=()=> {
-        $http({
-            url: 'http://localhost:3000/addTodo',
-            method:"POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            data: {task:$scope.task,email:JSON.parse(localStorage.user).email,date:new Date()}
-        }).then((res)=> {
-            $location.path('/');
-        })
+        todoFactory.addTodo($scope.task);
+    }
+    $scope.updateTodo=()=> {
+        todoFactory.updateTodo($scope.task);
     }
 })

@@ -11,7 +11,7 @@ app.controller("main-controller",($scope,$location,$timeout,mainFactory) => {
         mainFactory.onLoadFunction(res=> {
             $scope.todos=[];
             res.data.forEach((todo)=> {
-                $scope.todos.push({task:todo.task,date:new Date(todo.date).toDateString()});
+                $scope.todos.push({task:todo.task,date:new Date(todo.date).toDateString(),id:todo._id});
             })
         })
     }
@@ -19,6 +19,12 @@ app.controller("main-controller",($scope,$location,$timeout,mainFactory) => {
         mainFactory.delete(index,()=> {
             $scope.todos.splice(index,1);
         });
+    }
+    $scope.edit=(todo)=> {
+        $location.path('/edit');
+        $timeout(()=> {
+            $scope.$broadcast('fillTask',{data:todo})
+        },100)
     }
     $scope.$on("loadRoutes",(e,data)=> {
         $timeout(()=> {

@@ -1,0 +1,9 @@
+<div class="container" ng-controller="todoController">
+    <h1 class="text-center">Edit Todo</h1>
+    <form>
+        <div class="form-group">
+            <input type="text" name="task" id="task" class="form-control" ng-model="task" placeholder="Edit todo">
+        </div>
+        <button class="btn btn-success" ng-click="updateTodo()">Update</button>
+    </form>
+</div>
