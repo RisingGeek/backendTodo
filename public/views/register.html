@@ -35,6 +35,7 @@
         <div class="alert alert-danger" ng-show="user.name===user.password && user.name && user.password">
             Username and Password cannot be same.
         </div>
+        <div class="loader text-center" ng-show="loader"></div>
         <button type="button" ng-click="register()" ng-disabled="!registrationForm.$valid || user.name===user.password" class="btn btn-primary">Register</button>
     </form>
 </div>

@@ -2,7 +2,7 @@ app.factory("todoFactory",($http,$location)=> {
     return {
         addTodo(task) {
             $http({
-                url: 'http://localhost:3000/addTodo',
+                url: '/addTodo',
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -14,7 +14,7 @@ app.factory("todoFactory",($http,$location)=> {
         },
         updateTodo(task) {
             $http({
-                url: 'http://localhost:3000/updateTodo',
+                url: '/updateTodo',
                 method:"POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -22,7 +22,6 @@ app.factory("todoFactory",($http,$location)=> {
                 data: {todo:{task:task,todoId:JSON.parse(localStorage.todo).todoId}}
             }).then((res)=> {
                 $location.path('/');
-                localStorage.removeItem("todo");
             })
         }
     }

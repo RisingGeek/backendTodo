@@ -15,9 +15,9 @@ app.controller("main-controller",($scope,$location,$timeout,mainFactory) => {
             })
         })
     }
-    $scope.delete=(index)=> {
-        mainFactory.delete(index,()=> {
-            $scope.todos.splice(index,1);
+    $scope.delete=(todo)=> {
+        mainFactory.delete(todo,(data)=> {
+            $scope.todos=data;
         });
     }
     $scope.edit=(todo)=> {

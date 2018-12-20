@@ -29,8 +29,9 @@ app.post('/getTodos',(req,res)=> {
     });
 })
 app.delete('/deleteTodo',(req,res)=> {
-    toDoCrud.delete(req.body);
-    res.send();
+    toDoCrud.deleteTask(req.body,(docs)=> {
+        res.send(docs);
+    });
 })
 app.post('/addTodo',(req,res)=> {
     toDoCrud.addTask(req.body);

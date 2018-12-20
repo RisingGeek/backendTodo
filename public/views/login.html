@@ -16,6 +16,8 @@
         <div class="alert alert-danger" ng-show="!correctCredentials">
             Wrong Credentials.
         </div>
+        <br  ng-show="loader">
+        <div class="loader text-center" ng-show="loader"></div>
         <br>
         <button type="button" ng-click="login()" class="btn btn-primary">Login</button>
     </form>

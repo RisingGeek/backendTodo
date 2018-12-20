@@ -7,6 +7,7 @@ app.controller("user-controller",($scope,$http,userFactory)=> {
     $scope.showPassword=false;
     $scope.message='';
     $scope.backendNotValid=false;
+    $scope.loader=false;
     $scope.onLoadFunction=()=> {
         userFactory.onLoadFunction((res)=> {
             $scope.allUsers=res.data;
@@ -22,7 +23,9 @@ app.controller("user-controller",($scope,$http,userFactory)=> {
         }
     }
     $scope.register=()=> {
+        $scope.loader=true;
         userFactory.register($scope.user,(res)=> {
+            $scope.loader=false;
             if(res.data==='true') {
                 $scope.$emit("loadRoutes",$scope.user);
             }
@@ -33,7 +36,9 @@ app.controller("user-controller",($scope,$http,userFactory)=> {
         })
     }
     $scope.login=()=> {
+        $scope.loader=true;
         userFactory.login($scope.user,(res)=> {
+            $scope.loader=false;
             if(res.data.result) {
                 $scope.$emit("loadRoutes",{name:res.data.userName,email:$scope.user.email});
                 $scope.correctCredentials=true;
