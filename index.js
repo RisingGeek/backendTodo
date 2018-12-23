@@ -4,11 +4,12 @@ const bodyParser=require('body-parser');
 const userCrud=require('./db/userCrud');
 const toDoCrud=require('./db/toDoCrud');
 var path = require('path');
-const port=3000;
+const PORT=process.env.PORT|| 3000;
 app.use(express.static(path.join(__dirname)));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.get('/getAllUsers',(req,res)=> {
+    console.log(req.session)
     userCrud.getAllUsers(function(docs) {
         res.send(docs);
     });
@@ -42,4 +43,4 @@ app.post('/updateTodo',(req,res)=> {
         res.send();
     });
 })
-app.listen(port,()=>console.log('server started on port ',port));
+app.listen(PORT,()=>console.log('server started on port ',PORT));
