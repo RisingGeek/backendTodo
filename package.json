@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.6.3",
     "angular": "^1.7.5",
     "angular-route": "^1.7.5",
     "bcryptjs": "^2.4.3",
@@ -19,7 +20,5 @@
     "jquery": "^3.3.1",
     "mongoose": "^5.4.0"
   },
-  "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.6.1"
-  }
+  "devDependencies": {}
 }
